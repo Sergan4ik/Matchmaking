@@ -68,9 +68,9 @@ public class MatchmakerExampleController: Controller, IMatchmakerEndpoint
     [HttpPost("GetMMStatus")]
     [Produces("application/json")]
     [ProducesResponseType(typeof(MatchmakingStatusResponse), StatusCodes.Status200OK)]
-    public IActionResult GetMMStatusReq(int playerId)
+    public async Task<IActionResult> GetMMStatusReq(int playerId)
     {
-        var status = GetMMStatus(playerId);
+        var status = await GetMMStatus(playerId);
         return Ok(status);
     }
     
@@ -157,36 +157,5 @@ public class MatchmakerExampleController: Controller, IMatchmakerEndpoint
             _logger.LogWarning($"Room {roomId} not found.");
             return Task.FromResult((MMRoom)default);
         }
-    }
-}
-
-public record StartSearchResponse(string message, int playerId)
-{
-    public override string ToString()
-    {
-        return $"{{ message = {message}, playerId = {playerId} }}";
-    }
-}
-
-public record CancelSearchResponse(string message, int playerId)
-{
-    public override string ToString()
-    {
-        return $"{{ message = {message}, playerId = {playerId} }}";
-    }
-}
-
-public record AcceptRoomResponse(string message, int playerId, int roomId)
-{
-    public override string ToString()
-    {
-        return $"{{ message = {message}, playerId = {playerId}, roomId = {roomId} }}";
-    }
-}
-public record RejectRoomResponse(string message, int playerId, int roomId)
-{
-    public override string ToString()
-    {
-        return $"{{ message = {message}, playerId = {playerId}, roomId = {roomId} }}";
     }
 }

@@ -1,6 +1,9 @@
 ﻿using System.Text;
 using System.Threading;
+using ZergRush.CodeGen;
 
+[GenTask(GenTaskFlags.SimpleDataPack), GenInLocalFolder]
+[Serializable]
 public class ConcurrentBitset
 {
     private long[] words;

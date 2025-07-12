@@ -36,7 +36,8 @@ public abstract class MatchmakerBase<T>(ILogger<MatchmakerBase<T>> logger) where
             id = __roomIdFactory++,
             createdAt = (int)GlobalTime.seconds,
             players = playerInfos,
-            readyPlayers = new ConcurrentBitset(playerInfos.Count(), false)
+            readyPlayers = new ConcurrentBitset(playerInfos.Count(), false),
+            releaseReason = RoomReleaseReason.NotReleased
         };
         allRooms.TryAdd(mmRoom.id, mmRoom);
         
@@ -53,15 +54,9 @@ public abstract class MatchmakerBase<T>(ILogger<MatchmakerBase<T>> logger) where
                 if (pendingAcceptRooms.TryRemove(p.playerId, out _)) { }
             }
             
+            room.releaseReason = reason;
             onRoomReleased.Send((room, reason));
             logger.LogInformation($"Room {roomId} released due to {reason}. Remaining rooms: {allRooms.Count}");
         }
     }
-}
-
-public enum RoomReleaseReason
-{
-    RoomAccepted,
-    RoomTimeout,
-    RoomCancelled
 }

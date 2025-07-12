@@ -10,6 +10,7 @@
     <ItemGroup>
         <PackageReference Include="JetBrains.Annotations" Version="2025.1.0-eap1" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.6"/>
+        <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.14.0" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
         <PackageReference Include="Serilog" Version="4.3.1-dev-02373" />
         <PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
@@ -20,4 +21,28 @@
       <Folder Include="ZR\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Remove="ZR\UnityTools\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="ZR\UnityTools\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Remove="ZR\UnityTools\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="ZR\UnityTools\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="ZR\UnityTools\CodeGen\Console~\bin\Debug\net6.0-windows\ConsoleGen.deps.json" />
+      <_ContentIncludedByDefault Remove="ZR\UnityTools\CodeGen\Console~\bin\Debug\net6.0-windows\ConsoleGen.runtimeconfig.json" />
+      <_ContentIncludedByDefault Remove="ZR\UnityTools\CodeGen\Console~\obj\ConsoleGen.csproj.nuget.dgspec.json" />
+      <_ContentIncludedByDefault Remove="ZR\UnityTools\CodeGen\Console~\obj\Debug\net6.0-windows\ConsoleGen.sourcelink.json" />
+      <_ContentIncludedByDefault Remove="ZR\UnityTools\CodeGen\Console~\obj\project.assets.json" />
+      <_ContentIncludedByDefault Remove="ZR\UnityTools\CodeGen\Console~\obj\project.packagespec.json" />
+    </ItemGroup>
 </Project>

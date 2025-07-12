@@ -12,12 +12,4 @@ public interface IMatchmakerEndpoint
     Task<MMRoom> FetchRoomState(int roomId);
 }
 
-public record MatchmakingStatusResponse(string message, MMRoom room)
-{
-    public record PlayerInfo(int playerId, int rating);
 
-    public override string ToString()
-    {
-        return $"{{ message = {message}, roomId = {room.id}, createdAt = {room.createdAt}, players = [{string.Join(", ", room.players)}], readyPlayers = {room.readyPlayers} }}";
-    }
-}
